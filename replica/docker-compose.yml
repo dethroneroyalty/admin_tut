@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  master:
+    image: mongo:latest
+    command:
+      - "-f"
+      - "/etc/mongod.conf"
+    volumes:
+      - "./master/data/mongod.conf:/etc/mongod.conf"
+      - "./master/data/db:/data/db"
+    ports:
+      - "27017:27017"
+
+  replica1:
+    image: mongo:latest
+    command:
+      - "-f"
+      - "/etc/mongod.conf"
+    volumes:
+      - "./replica1/data/mongod.conf:/etc/mongod.conf"
+      - "./replica1/data/db:/data/db"
+
+  arbiter:
+    image: mongo:latest
+    command:
+      - "-f"
+      - "/etc/mongod.conf"
+    volumes:
+      - "./arbiter/data/mongod.conf:/etc/mongod.conf"
+      - "./arbiter/data/db:/data/db"
+
